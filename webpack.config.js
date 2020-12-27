@@ -7,7 +7,7 @@ const dotenv = require('dotenv').config( {
 } );
 
 console.log('-------------------------')
-console.log(process.env.NODE_ENV)
+console.log(dotenv.parsed)
 console.log('-------------------------')
 
 module.exports = {
@@ -61,13 +61,19 @@ module.exports = {
       chunkFilename: "css/chunk-[id].css",
     }),
     new webpack.DefinePlugin( {
-      "process.env": dotenv.parsed
-    } )
+      'process.env.GAME_API_KEY': JSON.stringify(process.env.GAME_API_KEY || '')
+    } ),
   ],
   devtool: 'inline-source-map',
+  node: {
+    fs: "empty"
+  },
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
     compress: true,
-    port: 9000
+    port: 9000,
+    historyApiFallback: {
+      index: 'index.html'
+    }
   }
 };

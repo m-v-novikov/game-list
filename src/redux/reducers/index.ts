@@ -4,6 +4,9 @@ import {AppBreakpoints} from "./typings";
 
 import { combineReducers } from 'redux';
 import { intlReducer } from 'react-intl-redux';
+
+import gamesReducer from "./games";
+
 import {APP_SET_MEDIA_BREAKPOINT} from "../actions";
 
 export const defaultAppState: DefaultAppState = {
@@ -26,7 +29,8 @@ const appReducer = (state = defaultAppState, {type, payload}: AppActions) => {
 
 const rootReducer = combineReducers({
   intl: intlReducer,
-  app: appReducer
+  app: appReducer,
+  games: gamesReducer
 });
 
 export default rootReducer;

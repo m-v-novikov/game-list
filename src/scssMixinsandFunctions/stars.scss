@@ -1,0 +1,20 @@
+@import "animations";
+
+@include keyframes(animStar) {
+  from {
+    @include transform(translateY(0px))
+  }
+  to {
+    @include transform(translateY(-2000px))
+  }
+}
+
+// n is number of stars required
+@function multiple-box-shadow ($n) {
+  $value: '#{random(2000)}px #{random(2000)}px #FFF';
+  @for $i from 2 through $n {
+    $value: '#{$value} , #{random(2000)}px #{random(2000)}px #FFF';
+  }
+
+  @return unquote($value);
+}

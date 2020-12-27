@@ -1,0 +1,81 @@
+@import "src/scssMixinsandFunctions/common";
+
+.list-wrapper {
+  @include flexbox();
+  @include flex-wrap(wrap);
+
+  .list-item-wrapper {
+    @include flex(0 0 25%);
+    @include box-sizing();
+    max-width: 25%;
+    padding: 20px 10px;
+  }
+}
+
+.game {
+  &-card {
+    position: relative;
+    padding: 10px 10px 20px;
+    color: white;
+    text-decoration: none;
+    background: rgba(#e2e2e2, 0.3);
+    display: block;
+    @include border-radius(2px);
+    @include calc('height', '100% - 10px');
+  }
+
+  &-image {
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    &:before {
+      content: '';
+      display: block;
+      padding-bottom: 100%;
+    }
+  }
+
+  &-name {
+    padding: 10px 0;
+    border: none;
+    text-decoration: underline;
+  }
+
+  &-footer {
+    position: absolute;
+    bottom: 0; left: 0;
+    padding: 10px;
+    @include calc('width', '100% - 20px');
+    @include flexbox();
+    @include justify-content(space-between);
+    @include align-items(center);
+  }
+
+  &-rating {
+    @include flex(0 0 50%);
+    max-width: 50%;
+  }
+
+  &-released {
+    font-size: 13px;
+    text-align: right;
+    @include flex(0 0 50%);
+    max-width: 50%;
+
+  }
+}
+
+@include breakpoint-mobile {
+  .list-wrapper .list-item-wrapper {
+    @include flex(0 0 50%);
+    max-width: 50%;
+  }
+}
+
+@include breakpoint-extra-small {
+  .list-wrapper .list-item-wrapper {
+    @include flex(0 0 100%);
+    max-width: 100%;
+  }
+}

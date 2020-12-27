@@ -1,0 +1,70 @@
+@import "src/scssMixinsandFunctions/common";
+
+
+.image-gallery {
+  &__wrap {
+    padding: 0 10px;
+  }
+
+  &__active-image {
+    margin-bottom: 5px;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    &:before {
+      content: '';
+      display: block;
+      padding-bottom: 60%;
+    }
+  }
+
+  &__images-list {
+    @include flexbox();
+
+    & > div {
+      max-width: 50%;
+      padding: 5px;
+      @include box-sizing();
+      @include flex(0 0 50%);
+
+
+      &:first-of-type {
+        padding-left: 0;
+      }
+
+      &:last-of-type {
+        padding-right: 0;
+      }
+
+      &:not(.active) {
+        cursor: pointer;
+
+        .image-gallery__image{
+          position: relative;
+
+          &:after {
+            content: '';
+            background: rgba(#000, 0.6);
+            position: absolute;
+            left: 0; top: 0;
+            width: 100%; height: 100%;
+            z-index: 2;
+          }
+        }
+      }
+    }
+  }
+
+  &__image {
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    &:before {
+      content: '';
+      display: block;
+      padding-bottom: 60%;
+    }
+  }
+}
