@@ -5,29 +5,29 @@ import {connect} from 'react-redux';
 import {Router, Route, Switch} from 'react-router-dom';
 import {createBrowserHistory as createHistory} from 'history';
 import Media from 'react-media';
-import NotFoundPage from "./pages/NotFoundPage";
-import {appSetMediaBreakpoint} from "./redux/actions";
+import NotFoundPage from "../pages/NotFoundPage";
+import {appSetMediaBreakpoint} from "../redux/actions";
+import {requestGamesList} from "../redux/actions/games";
 
 import './style.scss';
-import {requestGamesList} from "./redux/actions/games";
 
 type PropsFromRedux = ConnectedProps<typeof connector>
 
 const dynamicRoutesConfig = [
   {
     path: "/",
-    pathToComponent: "./pages/Home"
+    pathToComponent: "pages/Home"
   },
   {
     path: "/games/:id",
-    pathToComponent: "./pages/Game"
+    pathToComponent: "pages/Game"
   }
 ];
 
 export const history = createHistory();
 function AppRouter({appSetMediaBreakpoint, requestGamesList}: PropsFromRedux){
   useEffect(() => {
-    requestGamesList({});
+    requestGamesList({dates: '2020-01-01,2020-12-31', genres: 'action', page_size: 40});
   }, [])
 
   return(
@@ -62,7 +62,7 @@ function AppRouter({appSetMediaBreakpoint, requestGamesList}: PropsFromRedux){
                   key={i}
                   path={route.path}
                   component={() => {
-                    const Loadable = lazy(() => import(/* webpackPrefetch: true */ `${route.pathToComponent}`));
+                    const Loadable = lazy(() => import(/* webpackPrefetch: true */ `../${route.pathToComponent}`));
                     return (
                       <Suspense fallback={<div>Loading...</div>}>
                         <Loadable />

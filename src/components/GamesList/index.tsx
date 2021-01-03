@@ -12,6 +12,14 @@ import './style.scss';
 
 type PropsFromRedux = ConnectedProps<typeof connector>;
 const GamesList = ({games = []}: PropsFromRedux) => {
+  if (!games.length) {
+    return (
+      <div className="panel">
+        The list is empty or something goes wrong...
+      </div>
+    )
+  }
+
   return (
     <div className="list-wrapper">
       {games.map(({id, name, rating, background_image, released}: GameFromList) => (  //genres
@@ -36,7 +44,5 @@ const mapStateToProps = (state: RootState) => ({
   games: selectGamesList(state)
 })
 
-const mapDispatchTiProps = ({});
-
-const connector = connect(mapStateToProps, mapDispatchTiProps)
+const connector = connect(mapStateToProps)
 export default connector(GamesList);

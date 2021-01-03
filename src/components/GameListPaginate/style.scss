@@ -1,0 +1,32 @@
+@import "src/scssMixinsandFunctions/common";
+
+.games-list-pagination {
+  text-align: right;
+
+  li {
+    list-style: none;
+    margin-left: 5px;
+    cursor: pointer;
+    @include inline-block();
+
+    &.active {
+      background: #3f51b5;
+    }
+
+    &.break,
+    &.active {
+      cursor: default;
+    }
+
+    a {
+      display: block;
+      border: 1px solid white;
+      min-width: 42px; height: 42px;
+      line-height: 42px;
+      text-align: center;
+      outline: none;
+      @include border-radius(4px);
+      @include user-select();
+    }
+  }
+}

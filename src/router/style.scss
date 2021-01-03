@@ -1,4 +1,4 @@
-@import "scssMixinsandFunctions/common";
+@import "src/scssMixinsandFunctions/common";
 
 $shadows-small:  multiple-box-shadow(700);
 $shadows-medium: multiple-box-shadow(200);
@@ -91,4 +91,8 @@ $shadows-big:    multiple-box-shadow(100);
   a {
     color: white;
   }
+}
+
+.hidden {
+  display: none!important;
 }

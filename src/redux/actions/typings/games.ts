@@ -1,7 +1,5 @@
 
 
-export type FilterProps = {[key: string]: string;};
-
 export type GameFromList = {
   id: number;
   name: string;
@@ -24,4 +22,8 @@ export type GameDetails = {
   dominant_color: string;
   platforms: Array<object>;
   website: string;
+}
+
+export type GamesFilters = {
+  [key: string]: any
 }

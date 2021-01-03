@@ -3,6 +3,11 @@
 @import "flexbox";
 @import "media";
 
+$PREFIXES: -webkit-, -moz-, -ms-, -o-, '';
+
+@mixin prefix-template($var, $value, $prefixes:$PREFIXES) {
+  @each $pre in $prefixes { #{$pre + $var}: #{$value};  }
+}
 
 @mixin radial-gradient($position, $from, $to) {
   background: -moz-radial-gradient($position, $from 0%, $to 100%);
@@ -36,4 +41,19 @@
   opacity: $value;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity="+$IEValue+")";
   filter: alpha(opacity=$IEValue);
+}
+
+@mixin inline-block($align: middle) {
+  display: inline-block;
+  vertical-align: $align;
+}
+
+@mixin user-select($value: none) {
+  @include prefix-template(user-select, #{$value});
+}
+
+@mixin text-overflow-ellipsis() {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
 }

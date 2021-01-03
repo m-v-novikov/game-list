@@ -1,25 +1,46 @@
 import type {DefaultAction} from "../actions/typings";
-import type {FilterProps} from "../actions/typings/games";
+import type {GamesFilters} from "../actions/typings/games";
+import type {RootState} from "../reducers/typings";
 
-import {takeLatest, fork, join, put} from 'redux-saga/effects';
+import {takeLatest, fork, join, put, select} from 'redux-saga/effects';
 import _ from 'lodash';
-
 import api from '../api'
-import {receiveGameDetails, receiveGamesList, REQUEST_GAME_DETAILS, REQUEST_GAMES_LIST} from '../actions/games';
+import {
+  receiveGameDetails,
+  receiveGamesFilters,
+  receiveGamesList,
+  REQUEST_GAME_DETAILS,
+  REQUEST_GAMES_LIST
+} from '../actions/games';
 
-export function* getGamesSaga(action: DefaultAction<FilterProps>) {
+export function* getGamesSaga(action: DefaultAction<GamesFilters>) {
   try {
     const request = yield fork(api.getGames, action);
     const response = yield join(request);
 
+    const store: RootState = yield select();
     if (response?.results) {
+      const {results, count} = response;
       const games = yield _.map(
-        response.results,
+        results,
         ({id, name, rating, genres, background_image, released}) => ({id, name, rating, genres, background_image, released})
       );
+      const itemsPerPage = action.payload.page_size || results.length + 1;
+      const pageCount = Math.ceil(count/itemsPerPage);
       yield put(receiveGamesList(games));
+      yield put(receiveGamesFilters({
+        ...store.games.filters,
+        ...action.payload,
+        pageCount
+      }))
+    } else {
+      yield put(receiveGamesList([]));
+      yield put(receiveGamesFilters({
+        ...store.games.filters,
+        ...action.payload
+      }))
     }
-  }catch (e) {
+  } catch (e) {
     console.log(e);
   }
 }

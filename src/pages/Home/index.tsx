@@ -2,6 +2,8 @@ import type {ReactElement} from 'react';
 
 import React, {useEffect} from 'react';
 import GamesList from "../../components/GamesList";
+import GameListFilterForm from "../../components/GameListFilterForm";
+import GameListPaginate from "../../components/GameListPaginate";
 
 import './style.scss';
 
@@ -16,12 +18,22 @@ export default (): ReactElement => {
 
   }, [])
 
-  //https://github.com/ChoTotOSS/react-paginating#examples - add paginator
   return (
     <div className="game-list">
-      <div className="panel">Filters block</div>
+      <div className="panel">
+        Filters block
+        <GameListFilterForm />
+      </div>
+
+      <div className="panel">
+        <GameListPaginate />
+      </div>
+
       <GamesList />
-      <div className="panel" />
+
+      <div className="panel">
+        <GameListPaginate />
+      </div>
     </div>
   );
 };

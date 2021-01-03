@@ -1,0 +1,15 @@
+@import "src/scssMixinsandFunctions/common";
+
+.filters-wrapper {
+  @include flexbox();
+  @include justify-content(space-between);
+  @include align-items(center);
+  @include flex-wrap(wrap);
+
+  & > div {
+    margin: 10px 0;
+    @include flex(0 0 40%);
+    max-width: 40%;
+  }
+
+}

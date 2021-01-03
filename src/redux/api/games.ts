@@ -1,6 +1,8 @@
+import type {DefaultAction} from "../actions/typings";
+import type {GamesFilters} from "../actions/typings/games";
+
 import qs from 'qs';
 import {baseApiUrl, key, requestHeaders} from "./index";
-import {DefaultAction} from "../actions/typings";
 
 
 export const getGames = async (action: DefaultAction<object>) => {
@@ -9,9 +11,13 @@ export const getGames = async (action: DefaultAction<object>) => {
     ...requestHeaders
   };
 
-  const searchParams = {
-    key,
-    ...action?.payload || {}
+  const searchParams: GamesFilters = {
+    ...(key ? {key} : {}),
+    ...(action?.payload || {})
+  }
+  if (!searchParams.search) {
+    delete searchParams.search;
+    delete searchParams.search_precise;
   }
 
   try{
@@ -28,7 +34,7 @@ export const getGameDetails = async (action: DefaultAction<string>) => {
     ...requestHeaders
   };
 
-  const searchParams = {key};
+  const searchParams = {...(key ? {key} : {})};
 
   try{
     const response = await fetch(`${baseApiUrl}/games/${action.payload}?${qs.stringify(searchParams)}`, params);

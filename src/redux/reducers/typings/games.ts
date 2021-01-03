@@ -1,6 +1,7 @@
-import type {GameDetails, GameFromList} from "../../actions/typings/games";
+import type {GameDetails, GameFromList, GamesFilters} from "../../actions/typings/games";
 
 export type GamesRootState = {
   list: Array<GameFromList>,
-  gameDetails: GameDetails
+  gameDetails: GameDetails,
+  filters: GamesFilters
 }

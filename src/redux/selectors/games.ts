@@ -14,3 +14,8 @@ export const selectGameDetails = createDeepEqualSelector(
   selectGamesNamespace,
   (games: GamesRootState) => games.gameDetails
 )
+
+export const selectGamesFilters = createDeepEqualSelector(
+  selectGamesNamespace,
+  (games: GamesRootState) => games.filters
+)
