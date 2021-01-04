@@ -1,9 +1,9 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import createSagaMiddleware from 'redux-saga';
-import rootReducer from '../reducers';
 import {createLogger} from 'redux-logger'
-import rootSaga from "../saga-generators";
 import {APP_WAS_LOADED} from "../actions";
+import rootReducer from '../reducers';
+import rootSaga from "../saga-generators";
 
 const logger = createLogger({
   // ...options

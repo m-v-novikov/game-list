@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import AppRouter from './router/AppRouter';
-import configureStore from './redux/store/configureStore';
 import {Provider} from 'react-redux';
 import {IntlProvider} from 'react-intl-redux'
+import AppRouter from './router/AppRouter';
+import configureStore from './redux/store/configureStore';
 
 const store = configureStore();
 const jsx = (

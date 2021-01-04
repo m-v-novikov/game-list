@@ -1,4 +1,5 @@
 
+export type GamesList = Array<GameFromList>;
 
 export type GameFromList = {
   id: number;

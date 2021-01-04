@@ -13,10 +13,10 @@ console.log('-------------------------')
 module.exports = {
   entry: ['babel-polyfill', './src/index'],
   output: {
-    path: path.join(__dirname, '/dist'),
+    path: path.join(__dirname, 'dist'),
     filename: '[name].bundle.js',
     chunkFilename: "chunks/[contenthash].js",
-    publicPath: "/dist/"
+    publicPath: '/',
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js']

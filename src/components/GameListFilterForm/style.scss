@@ -12,4 +12,17 @@
     max-width: 40%;
   }
 
+  @include breakpoint-all-mobile {
+    & > div {
+      @include flex(0 0 100%);
+      max-width: 100%;
+    }
+  }
+
+  @include breakpoint-desktop-extra-large {
+    & > div {
+      @include flex(0 0 20%);
+      max-width: 20%;
+    }
+  }
 }

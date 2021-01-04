@@ -7,7 +7,8 @@
     "bundle": "webpack",
     "start": "webpack-dev-server --mode development --open --hot",
     "build": "webpack --mode production",
-    "check-types": "tsc"
+    "check-types": "tsc",
+    "serve": "node server/server.js"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
@@ -29,8 +30,10 @@
     "@types/redux-logger": "^3.0.8",
     "@types/webpack-env": "^1.16.0",
     "babel-loader": "^8.2.2",
+    "compression": "^1.7.4",
     "css-loader": "^5.0.1",
     "dotenv": "^8.2.0",
+    "express": "^4.17.1",
     "html-webpack-plugin": "^4.5.0",
     "mini-css-extract-plugin": "^1.3.3",
     "redux-logger": "^3.0.6",

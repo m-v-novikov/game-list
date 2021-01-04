@@ -1,3 +1,4 @@
+import type {ReactElement} from 'react';
 import type {ConnectedProps} from "react-redux";
 import type {GameFromList} from "../../redux/actions/typings/games";
 import type {RootState} from "../../redux/reducers/typings";
@@ -11,7 +12,7 @@ import './style.scss';
 
 
 type PropsFromRedux = ConnectedProps<typeof connector>;
-const GamesList = ({games = []}: PropsFromRedux) => {
+const GamesList = ({games = []}: PropsFromRedux): ReactElement => {
   if (!games.length) {
     return (
       <div className="panel">

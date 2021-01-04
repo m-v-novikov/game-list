@@ -1,12 +1,12 @@
+import type {ReactElement} from 'react';
+import type {match} from 'react-router-dom';
 import type {RootState} from "../../redux/reducers/typings";
 import type {GameDetails} from "../../redux/actions/typings/games";
-import type {match} from 'react-router-dom';
-import type {ReactElement} from 'react';
 
 import React, {useEffect} from 'react';
-import {NavLink, withRouter} from 'react-router-dom';
-import {connect} from "react-redux";
 import {compose} from "redux";
+import {connect} from "react-redux";
+import {NavLink, withRouter} from 'react-router-dom';
 import {requestGameDetails} from "../../redux/actions/games";
 import {selectGameDetails} from "../../redux/selectors/games";
 import GameDetailsBlock from "../../components/GameDetailsBlock";

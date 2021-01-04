@@ -6,18 +6,21 @@
     color: white;
     background: rgba(#e2e2e2, 0.3);
     @include flexbox();
+    @include flex-wrap(wrap);
     @include border-radius(2px);
   }
 
   &-preview {
     @include flex(0 0 50%);
     max-width: 50%;
+    @include box-sizing(border-box);
   }
 
   &-info {
     @include flex(0 0 50%);
     max-width: 50%;
     padding: 0 10px;
+    @include box-sizing(border-box);
 
     .name {
       font-size: 26px;
@@ -30,6 +33,18 @@
 
     .link {
       color: lightblue;
+    }
+  }
+
+  @include breakpoint-all-mobile {
+    &-preview {
+      @include flex(0 0 100%);
+      max-width: 100%;
+    }
+
+    &-info {
+      @include flex(0 0 100%);
+      max-width: 100%;
     }
   }
 }

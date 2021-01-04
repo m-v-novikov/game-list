@@ -1,3 +1,4 @@
+import type {ReactElement} from 'react';
 import type {ConnectedProps} from 'react-redux';
 
 import React, {lazy, Suspense, useEffect} from 'react';
@@ -25,7 +26,7 @@ const dynamicRoutesConfig = [
 ];
 
 export const history = createHistory();
-function AppRouter({appSetMediaBreakpoint, requestGamesList}: PropsFromRedux){
+const AppRouter = ({appSetMediaBreakpoint, requestGamesList}: PropsFromRedux): ReactElement => {
   useEffect(() => {
     requestGamesList({dates: '2020-01-01,2020-12-31', genres: 'action', page_size: 40});
   }, [])

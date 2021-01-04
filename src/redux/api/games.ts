@@ -1,11 +1,11 @@
 import type {DefaultAction} from "../actions/typings";
-import type {GamesFilters} from "../actions/typings/games";
+import type {GameDetails, GamesFilters, GamesList} from "../actions/typings/games";
 
 import qs from 'qs';
 import {baseApiUrl, key, requestHeaders} from "./index";
 
 
-export const getGames = async (action: DefaultAction<object>) => {
+export const getGames = async (action: DefaultAction<object>): Promise<GamesList | void> => {
   const params = {
     method: "GET",
     ...requestHeaders
@@ -28,7 +28,7 @@ export const getGames = async (action: DefaultAction<object>) => {
   }
 };
 
-export const getGameDetails = async (action: DefaultAction<string>) => {
+export const getGameDetails = async (action: DefaultAction<string>): Promise<GameDetails | void> => {
   const params = {
     method: "GET",
     ...requestHeaders

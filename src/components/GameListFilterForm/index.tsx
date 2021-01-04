@@ -1,9 +1,10 @@
 import type {ChangeEvent, ReactElement} from 'react';
+import type {ConnectedProps} from "react-redux";
 import type {RootState} from "../../redux/reducers/typings";
 
 import React, {useEffect, useState} from 'react';
 import {Button} from "@material-ui/core";
-import {connect, ConnectedProps} from "react-redux";
+import {connect} from "react-redux";
 import {requestGamesList} from "../../redux/actions/games";
 import {selectGamesFilters} from "../../redux/selectors/games";
 import CommonTextField from "../form/CommonTextField";

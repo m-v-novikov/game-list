@@ -1,16 +1,19 @@
+import type {ReactElement} from 'react';
 import type {ConnectedProps} from "react-redux";
 import type {RootState} from "../../redux/reducers/typings";
+import {AppBreakpoints} from "../../redux/reducers/typings";
 
 import React from 'react';
 import {connect} from "react-redux";
 import ReactPaginate from 'react-paginate';
+import {requestGamesList} from "../../redux/actions/games";
+import {selectAppMediaBreakpoint} from "../../redux/selectors";
 import {selectGamesFilters} from "../../redux/selectors/games";
 import './style.scss'
-import {requestGamesList} from "../../redux/actions/games";
 
 
 type PropsFromRedux = ConnectedProps<typeof connector>;
-const GameListPaginate = ({filters, requestGamesList}: PropsFromRedux) => {
+const GameListPaginate = ({filters, mediaBreakpoint, requestGamesList}: PropsFromRedux): ReactElement | null => {
   if (!Object.keys(filters).length) {
     return null;
   }
@@ -23,7 +26,7 @@ const GameListPaginate = ({filters, requestGamesList}: PropsFromRedux) => {
       breakClassName={'break'}
       pageCount={filters.pageCount}
       marginPagesDisplayed={2}
-      pageRangeDisplayed={5}
+      pageRangeDisplayed={mediaBreakpoint === AppBreakpoints.MOBILE ? 3 : 5}
       forcePage={(filters.page || 1) - 1}
       onPageChange={(item) => {
         const {pageCount, ...restFilters} = filters;
@@ -36,7 +39,8 @@ const GameListPaginate = ({filters, requestGamesList}: PropsFromRedux) => {
 };
 
 const mapStateToProps = (state: RootState) => ({
-  filters: selectGamesFilters(state)
+  filters: selectGamesFilters(state),
+  mediaBreakpoint: selectAppMediaBreakpoint(state)
 })
 
 const connector = connect(mapStateToProps, {requestGamesList})

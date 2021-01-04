@@ -39,3 +39,9 @@ $desktop-width-min: 1400px;
     @content;
   }
 }
+
+@mixin breakpoint-desktop-extra-large {
+  @media (min-width: #{$desktop-width-min}) {
+    @content;
+  }
+}

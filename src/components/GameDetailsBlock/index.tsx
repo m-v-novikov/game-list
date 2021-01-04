@@ -9,7 +9,8 @@ import './style.scss';
 type Props = {
   gameDetails: GameDetails
 }
-export default ({
+
+const GameDetailsBlock = ({
   gameDetails: {
     id,
     name,
@@ -38,4 +39,6 @@ export default ({
       <a href={website} className="link" target="_blank">Go to website...</a>
     </div>
   </div>
-)
+);
+
+export default GameDetailsBlock;

@@ -2,8 +2,8 @@ import type {DefaultAppState} from "./typings";
 import type {AppActions} from "../actions/typings";
 import {AppBreakpoints} from "./typings";
 
-import { combineReducers } from 'redux';
-import { intlReducer } from 'react-intl-redux';
+import {combineReducers} from 'redux';
+import {intlReducer} from 'react-intl-redux';
 
 import gamesReducer from "./games";
 
